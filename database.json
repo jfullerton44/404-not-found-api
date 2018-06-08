@@ -1,10 +1,10 @@
 {
     "dev": {
         "driver": "mysql",
-        "host": "localhost",
+        "host": "ix.clqojuwlo8sh.us-east-1.rds.amazonaws.com",
         "port": "3306",
         "user": "root",
-        "password": "11fullertoN",
-        "database": "goldenThread"
+        "password": "password",
+        "database": "database"
     }
 }
