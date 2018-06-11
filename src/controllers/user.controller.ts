@@ -7,6 +7,7 @@ import { Payment_MethodRepository } from "../repositories/payment_method.reposit
 import { Payment_Method } from "../models/payment_method";
 import { Donation } from "../models/donation";
 import { DonationRepository } from "../repositories/donation.repository";
+import { verify } from "jsonwebtoken";
 
 export class UserController {
 
@@ -16,18 +17,24 @@ export class UserController {
     @repository(DonationRepository.name) private donationRepo: DonationRepository
   ) {}
 
-  @get('/users')
+  @get('/users/all')
   async getAllUsers(): Promise<Array<User>> {
     return await this.userRepo.find();
   }
 
-  @get('/users/{id}')
-  async getUserByID(@param.path.number('id') id:number ): Promise<User> {
-    let userExists: boolean = !!(await this.userRepo.count({ id }));
-    if (!userExists) {
-      throw new HttpErrors.BadRequest(`user ID ${id} does not exist`);
+  @get('/users')
+  async getUserByKey(@param.query.string('jwt') jwt:string ): Promise<any> {
+    if (!jwt) {
+      throw new HttpErrors.Unauthorized(`Need a jwt`);
     }
-    return await this.userRepo.findById(id);
+    try{
+      var jwtBody = verify(jwt,'shh');
+      console.log(jwtBody);
+      return jwtBody;
+    }
+    catch(err){
+      throw new HttpErrors.BadRequest('JWT invalid')
+    }
   }
 
   @del('/users/{id}')

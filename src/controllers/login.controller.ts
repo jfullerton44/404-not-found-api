@@ -3,6 +3,7 @@ import { UserRepository } from "../repositories/user.repository";
 import { post, get, requestBody, HttpErrors } from "@loopback/rest";
 import { User } from "../models/user";
 import { Login } from "../models/login";
+import { sign } from "jsonwebtoken";
 
 export class LoginController {
 
@@ -24,8 +25,9 @@ export class LoginController {
     if(!userExists){
       throw new HttpErrors.Unauthorized('Username or Password incorrect');
     }
+    let tempUser: User;
 
-    return await this.userRepo.findOne({
+    tempUser = await this.userRepo.findOne({
       where:{
         and:[
           { email: login.email },
@@ -33,5 +35,19 @@ export class LoginController {
         ]
       }
     });
+    var jwt = sign(
+      {
+        user: tempUser,
+      },
+      'shh',
+      {
+        issuer: 'auth.ix.co.za',
+        audience: 'ix.co.za',
+      },
+    );
+
+    return {
+      token: jwt,
+    };
   }
 }

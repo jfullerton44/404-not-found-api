@@ -38,11 +38,11 @@ export class SafariApiApplication extends BootMixin(
       name: "db",
       connector: "loopback-connector-mysql",
       //host: 'golden-thread.clqojuwlo8sh.us-east-1.rds.amazonaws.com',
-      host:'ix.clqojuwlo8sh.us-east-1.rds.amazonaws.com',
+      host:'localhost',
       port: 3306,
-      database: 'database',
+      database: 'goldenThread',
       user: 'root',
-      password: 'password'
+      password: '11fullertoN'
     });
     this.dataSource(dataSourceConfig);
   }
