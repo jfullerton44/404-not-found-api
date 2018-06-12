@@ -8,6 +8,7 @@ import { Payment_Method } from "../models/payment_method";
 import { Donation } from "../models/donation";
 import { DonationRepository } from "../repositories/donation.repository";
 import { verify } from "jsonwebtoken";
+import * as bcrypt from 'bcrypt';
 
 export class UserController {
 
