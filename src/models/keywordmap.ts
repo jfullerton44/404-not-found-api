@@ -12,9 +12,9 @@ export class KeywordMap extends Entity {
   project_id: number;
 
   @property({
-    type: 'string',
+    type: 'number',
     required: true
   })
-  keyword_id: string;
+  keyword_id: number;
 
 }
