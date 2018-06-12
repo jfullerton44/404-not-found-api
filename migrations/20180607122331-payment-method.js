@@ -23,24 +23,29 @@ exports.up = function (db, callback) {
     },
     user_id: {
       type: 'int',
-      notNull: true
+      notNull: true,
+      foreignKey: {
+        name: 'payment_method_user_id_foreign',
+        table: 'user',
+        rules: {
+          onDelete: 'RESTRICT',
+          onUpdate: 'RESTRICT'
+        },
+        mapping: 'id'
+      }
     },
-    creditCardNumber: {
+    name: {
       type: 'string',
-      length: 16,
       notNull: true
     },
-    expirationDate: {
-      type: 'datetime',
-      notNull: true
-    },
-    securityCode: {
-      type: 'string',
+    lastFourCardNum: {
+      type: 'int',
       length: 4,
       notNull: true
     },
-    nameOnCard: {
-      type: 'text',
+    cardToken: {
+      type: 'string',
+      length: 2048,
       notNull: true
     }
   }, callback);

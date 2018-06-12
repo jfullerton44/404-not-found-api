@@ -15,37 +15,42 @@ exports.setup = function (options, seedLink) {
 };
 
 exports.up = function (db, callback) {
-  db.createTable('charity', {
+  db.createTable('post', {
     id: {
       type: 'int',
       primaryKey: true,
       autoIncrement: true
     },
+    project_id: {
+      type: 'int',
+      notNull: true,
+      foreignKey: {
+        name: 'post_project_id_foreign',
+        table: 'project',
+        rules: {
+          onDelete: 'RESTRICT',
+          onUpdate: 'RESTRICT'
+        },
+        mapping: 'id'
+      }
+    },
     name: {
       type: 'string',
       notNull: true
     },
-    description: {
-      type: 'text'
-    },
-    descriptionFull: {
-      type: 'text'
+    body: {
+      type: 'string'
     },
     photoLink: {
-      type: 'string'
-    },
-    photoLink2: {
-      type: 'string'
-    },
-    website: {
       type: 'string'
     }
   }, callback);
 };
 
 exports.down = function (db, callback) {
-  db.dropTable('charity', callback);
+  db.dropTable('post', callback);
 };
+
 
 exports._meta = {
   "version": 1

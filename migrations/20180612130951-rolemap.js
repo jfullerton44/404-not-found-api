@@ -15,29 +15,12 @@ exports.setup = function (options, seedLink) {
 };
 
 exports.up = function (db, callback) {
-  db.createTable('donation', {
-    amount_donated: {
-      type: 'int',
-      notNull: true
-    },
-    charity_id: {
-      type: 'int',
-      notNull: true,
-      foreignKey: {
-        name: 'donation_charity_id_foreign',
-        table: 'charity',
-        rules: {
-          onDelete: 'RESTRICT',
-          onUpdate: 'RESTRICT'
-        },
-        mapping: 'id'
-      }
-    },
+  db.createTable('rolemap', {
     user_id: {
       type: 'int',
       notNull: true,
       foreignKey: {
-        name: 'donation_user_id_foreign',
+        name: 'rolemap_user_id_foreign',
         table: 'user',
         rules: {
           onDelete: 'RESTRICT',
@@ -46,16 +29,26 @@ exports.up = function (db, callback) {
         mapping: 'id'
       }
     },
-    date: {
-      type: 'datetime'
-    }
+    role_id: {
+      type: 'int',
+      notNull: true,
+      foreignKey: {
+        name: 'rolemap_role_id_foreign',
+        table: 'role',
+        rules: {
+          onDelete: 'RESTRICT',
+          onUpdate: 'RESTRICT'
+        },
+        mapping: 'id'
+      }
+    },
   }, callback);
 };
 
-exports.down = function (db, callback) {
-  db.dropTable('donation', callback);
-};
 
+exports.down = function (db, callback) {
+  return db.dropTable('rolemap', callback);
+};
 
 exports._meta = {
   "version": 1

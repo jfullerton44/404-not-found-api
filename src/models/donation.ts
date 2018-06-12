@@ -5,12 +5,6 @@ import { Entity, property, model } from '@loopback/repository';
 })
 export class Donation extends Entity {
   @property({
-    type: 'number',
-    id: true
-  })
-  id?: number;
-
-  @property({
     type: 'number'
   })
   amount_donated: number;

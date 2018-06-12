@@ -15,36 +15,22 @@ exports.setup = function (options, seedLink) {
 };
 
 exports.up = function (db, callback) {
-  db.createTable('charity', {
+  db.createTable('role', {
     id: {
       type: 'int',
       primaryKey: true,
-      autoIncrement: true
+      notNull: true
     },
     name: {
       type: 'string',
       notNull: true
     },
-    description: {
-      type: 'text'
-    },
-    descriptionFull: {
-      type: 'text'
-    },
-    photoLink: {
-      type: 'string'
-    },
-    photoLink2: {
-      type: 'string'
-    },
-    website: {
-      type: 'string'
-    }
-  }, callback);
+  }, callback)
 };
 
+
 exports.down = function (db, callback) {
-  db.dropTable('charity', callback);
+  return db.dropTable('role', callback);
 };
 
 exports._meta = {

@@ -15,16 +15,12 @@ exports.setup = function (options, seedLink) {
 };
 
 exports.up = function (db, callback) {
-  db.createTable('donation', {
-    amount_donated: {
-      type: 'int',
-      notNull: true
-    },
+  db.createTable('bankaccount', {
     charity_id: {
       type: 'int',
       notNull: true,
       foreignKey: {
-        name: 'donation_charity_id_foreign',
+        name: 'bankaccount_charity_id_foreign',
         table: 'charity',
         rules: {
           onDelete: 'RESTRICT',
@@ -33,12 +29,12 @@ exports.up = function (db, callback) {
         mapping: 'id'
       }
     },
-    user_id: {
+    bank_id: {
       type: 'int',
       notNull: true,
       foreignKey: {
-        name: 'donation_user_id_foreign',
-        table: 'user',
+        name: 'bankaccount_bank_id_foreign',
+        table: 'bank',
         rules: {
           onDelete: 'RESTRICT',
           onUpdate: 'RESTRICT'
@@ -46,16 +42,21 @@ exports.up = function (db, callback) {
         mapping: 'id'
       }
     },
-    date: {
-      type: 'datetime'
+    accountNum: {
+      type: 'int',
+      notNull: true
+    },
+    routingNum: {
+      type: 'int',
+      notNull: true
     }
   }, callback);
 };
 
-exports.down = function (db, callback) {
-  db.dropTable('donation', callback);
-};
 
+exports.down = function (db, callback) {
+  return db.dropTable('bankaccount', callback);
+};
 
 exports._meta = {
   "version": 1

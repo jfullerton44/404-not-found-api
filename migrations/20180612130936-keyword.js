@@ -15,33 +15,23 @@ exports.setup = function (options, seedLink) {
 };
 
 exports.up = function (db, callback) {
-  db.createTable('post', {
+  db.createTable('keyword', {
     id: {
       type: 'int',
       primaryKey: true,
-      autoIncrement: true
-    },
-    project_id: {
-      type: 'int',
       notNull: true
     },
-    name: {
-      type: 'text',
+    keyword: {
+      type: 'string',
       notNull: true
-    },
-    body: {
-      type: 'text'
-    },
-    photoLink: {
-      type: 'text'
     }
   }, callback);
 };
 
-exports.down = function (db, callback) {
-  db.dropTable('post', callback);
-};
 
+exports.down = function (db, callback) {
+  return db.dropTable('keyword', callback);
+};
 
 exports._meta = {
   "version": 1
