@@ -197,3 +197,9 @@ dist8/test/mocha.opts
 dist8/test/ping.controller.acceptance.js
 dist8/test/ping.controller.acceptance.d.ts
 dist8/test/ping.controller.acceptance.js.map
+dist8/test/mocha 2.opts
+dist8/src/controllers/README 2.md
+dist8/src/datasources/README 2.md
+dist8/src/models/README 2.md
+dist8/src/repositories/README 2.md
+dist8/test/README 2.md
