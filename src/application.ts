@@ -40,9 +40,9 @@ export class SafariApiApplication extends BootMixin(
       //host: 'golden-thread.clqojuwlo8sh.us-east-1.rds.amazonaws.com',
       host:'localhost',
       port: 3306,
-      database: 'goldenThread',
+      database: 'database',
       user: 'root',
-      password: '11fullertoN'
+      password: 'password'
     });
     this.dataSource(dataSourceConfig);
   }
