@@ -1,7 +1,7 @@
-import {Entity, property, model} from '@loopback/repository';
+import { Entity, property, model } from '@loopback/repository';
 
 @model({
-    name: "charity"
+  name: "charity"
 })
 export class Charity extends Entity {
   @property({
@@ -35,11 +35,21 @@ export class Charity extends Entity {
     type: 'string'
 
   })
+
   photoLink2: string;
+  @property({
+    type: 'string'
+  })
+  email: string;
+
+  @property({
+    type: 'number'
+  })
+  phone: number;
 
   @property({
     type: 'string'
-  
+
   })
   website: string;
 

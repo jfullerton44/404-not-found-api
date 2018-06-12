@@ -4,13 +4,14 @@ import { property, Entity, model } from '@loopback/repository';
     name: "keyword"
 })
 
-export class Keyword extends Entity{
+export class Keyword extends Entity {
     @property({
         type: 'number',
-        required: true
+        required: true,
+        id: true
     })
-    user_id: number;
-    
+    id: number;
+
     @property({
         type: 'string',
         required: true
