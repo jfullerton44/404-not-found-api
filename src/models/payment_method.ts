@@ -1,7 +1,7 @@
-import {Entity, property, model} from '@loopback/repository';
+import { Entity, property, model } from '@loopback/repository';
 
 @model({
-    name: "payment_method"
+  name: "payment_method"
 })
 export class Payment_Method extends Entity {
   @property({
@@ -17,25 +17,16 @@ export class Payment_Method extends Entity {
   user_id: number;
 
   @property({
-    type: 'string'
+    type: 'number',
+    length: 4
   })
-  creditCardNumber: string;
+  lastFourCardNum: number;
 
   @property({
-    type: 'string'
+    type: 'string',
+    length: 2048
   })
-  expirationDate: Date;
-
-  @property({
-    type: 'string'
-  })
-  securityCode: string;
-
-  @property({
-    type: 'string'
-  })
-  nameOnCard: string;
-
+  cardToken: string;
   getId() {
     return this.id;
   }

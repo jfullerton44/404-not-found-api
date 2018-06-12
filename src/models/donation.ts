@@ -1,7 +1,7 @@
-import {Entity, property, model} from '@loopback/repository';
+import { Entity, property, model } from '@loopback/repository';
 
 @model({
-    name: "donation"
+  name: "donation"
 })
 export class Donation extends Entity {
   @property({
@@ -16,7 +16,8 @@ export class Donation extends Entity {
   amount_donated: number;
 
   @property({
-    type: 'number'
+    type: 'number',
+    required: true
   })
   charity_id: number;
 
