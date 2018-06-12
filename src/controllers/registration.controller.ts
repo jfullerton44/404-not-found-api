@@ -2,6 +2,7 @@ import { repository } from "@loopback/repository";
 import { UserRepository } from "../repositories/user.repository";
 import { post, get, requestBody, HttpErrors } from "@loopback/rest";
 import { User } from "../models/user";
+import * as bcrypt from 'bcrypt';
 
 export class RegistrationController {
 
@@ -11,6 +12,10 @@ export class RegistrationController {
 
   @post('/reg/users')
   async createUser(@requestBody() user: User) {
+
+    let hashedPassword = await bcrypt.hash(user.password,10);
+    //var userToStore = new User();
+    user.password= hashedPassword;
 
     let userExists: boolean = !!(await this.userRepo.count({ email: user.email }));
     if(userExists){
@@ -22,7 +27,9 @@ export class RegistrationController {
       throw new HttpErrors.BadRequest("Username Taken")
     }
 
-    return await this.userRepo.create(user);
+    let storedUser = await this.userRepo.create(user);
+    storedUser.password="";
+    return storedUser;
   }
 
   @get('/reg/users')
