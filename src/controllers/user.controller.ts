@@ -24,7 +24,7 @@ export class UserController {
   }
 
   @get('/users')
-  async getUserByKey(@param.query.string('jwt') jwt:string ): Promise<any> {
+  async getUserByKey(@param.query.string('jwt') jwt:any ): Promise<any> {
     if (!jwt) {
       throw new HttpErrors.Unauthorized(`Need a jwt`);
     }
