@@ -7,10 +7,10 @@ import { Project } from "../models/projects";
 
 
 export class ProjectRepository extends DefaultCrudRepository<
-Project,
-typeof Project.prototype.id
->{
-    constructor(@inject('datasources.db') protected datasource: DataSource){
-        super(Project,datasource);
+    Project,
+    typeof Project.prototype.id
+    >{
+    constructor(@inject('datasources.db') protected datasource: DataSource) {
+        super(Project, datasource);
     }
 }

@@ -1,11 +1,11 @@
 
-import {ApplicationConfig} from '@loopback/core';
-import {RestApplication, RestServer, RestBindings} from '@loopback/rest';
-import {MySequence} from './sequence';
+import { ApplicationConfig } from '@loopback/core';
+import { RestApplication, RestServer, RestBindings } from '@loopback/rest';
+import { MySequence } from './sequence';
 
 /* tslint:disable:no-unused-variable */
 // Binding and Booter imports are required to infer types for BootMixin!
-import {BootMixin, Booter, Binding} from '@loopback/boot';
+import { BootMixin, Booter, Binding } from '@loopback/boot';
 import {
   Class,
   Repository,
@@ -14,7 +14,7 @@ import {
 } from '@loopback/repository';
 /* tslint:enable:no-unused-variable */
 
-export class SafariApiApplication extends BootMixin(
+export class CharityAppApiApplication extends BootMixin(
   RepositoryMixin(RestApplication)
 ) {
   constructor(options?: ApplicationConfig) {
@@ -38,11 +38,11 @@ export class SafariApiApplication extends BootMixin(
       name: "db",
       connector: "loopback-connector-mysql",
       //host: 'golden-thread.clqojuwlo8sh.us-east-1.rds.amazonaws.com',
-      host:'localhost',
+      host: 'localhost',
       port: 3306,
-      database: 'goldenThread',
+      database: 'charity_database',
       user: 'root',
-      password: '11fullertoN'
+      password: 'Xzl25p56p!'
     });
     this.dataSource(dataSourceConfig);
   }
