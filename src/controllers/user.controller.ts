@@ -30,7 +30,7 @@ export class UserController {
     }
     try{
       var jwtBody = verify(jwt,'shh');
-      console.log(jwtBody);
+      //console.log(jwtBody);
       return jwtBody;
     }
     catch(err){
