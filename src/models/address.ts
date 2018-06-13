@@ -6,6 +6,11 @@ import { Entity, property, model } from '@loopback/repository';
 export class Address extends Entity {
   @property({
     type: 'number',
+    id: true
+  })
+  id: number;
+  @property({
+    type: 'number',
   })
   user_id: number;
 

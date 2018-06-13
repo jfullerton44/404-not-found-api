@@ -22,26 +22,28 @@ exports.up = function (db, callback) {
       autoIncrement: true
     },
     user_id: {
-      type: 'int'
+      type: 'int',
+      defaultValue: -1
     },
-    fullName: {
-      type: 'text'
+    charity_id: {
+      type: 'int',
+      defaultValue: -1
     },
-    streetAddress1: {
-      type: 'text'
+    bank_id: {
+      type: 'int',
+      defaultValue: -1
     },
-    streetAddress2: {
-      type: 'text'
+    street: {
+      type: 'string'
     },
     city: {
-      type: 'text'
-    },
-    zipcode: {
-      type: 'string',
-      lenght: 10
+      type: 'string'
     },
     state: {
-      type: 'text'
+      type: 'string',
+    },
+    zip: {
+      type: 'number'
     }
   }, callback);
 };
