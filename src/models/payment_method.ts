@@ -23,10 +23,10 @@ export class Payment_Method extends Entity {
   name: string;
 
   @property({
-    type: 'number',
+    type: 'string',
     length: 4
   })
-  lastFourCardNum: number;
+  lastFourCardNum: string;
 
   @property({
     type: 'string',

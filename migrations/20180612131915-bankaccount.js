@@ -48,11 +48,11 @@ exports.up = function (db, callback) {
       }
     },
     accountNum: {
-      type: 'int',
+      type: 'string',
       notNull: true
     },
     routingNum: {
-      type: 'int',
+      type: 'string',
       notNull: true
     }
   }, callback);
