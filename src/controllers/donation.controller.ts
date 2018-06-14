@@ -24,28 +24,28 @@ export class DonationController {
       @param.query.date('date') date: Date
     ) {
       var donation = new Donation;
-  
+
       let userExists: boolean = !!(await this.userRepo.count({ id: user_id }));
-  
+
       if (!userExists) {
         throw new HttpErrors.Unauthorized('User Does not exist');
       }
       // if (userExists) {
       //   console.log('user exists')
       // }
-  
+
       donation.user_id = user_id;
-  
+
       let charityExists: boolean = !!(await this.charityRepo.count({ id: charity_id }));
-  
+
       if (!charityExists) {
         throw new HttpErrors.Unauthorized('Charity Does not exist');
       }
-  
+
       donation.charity_id = charity_id;
       console.log(donation_amount);
       donation.amount_donated = donation_amount;
-  
+
       return await this.donationRepo.create(donation);
     }
   */
@@ -81,9 +81,9 @@ export class DonationController {
     return this.donationRepo.find({ where: { charity_id: charity_id } });
   }
 
-  @get('/donations')
+  @get('/donationsId')
   async getDonationsbyUserID(@param.query.number('user_id') user_id: number): Promise<Array<Donation>> {
-    let userExists: boolean = !!(await this.charityRepo.count({ id: user_id }));
+    let userExists: boolean = !!(await this.userRepo.count({ id: user_id }));
     if (!userExists) {
       throw new HttpErrors.BadRequest("User does not exist");
     }
