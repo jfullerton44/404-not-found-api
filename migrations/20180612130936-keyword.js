@@ -19,7 +19,8 @@ exports.up = function (db, callback) {
     id: {
       type: 'int',
       primaryKey: true,
-      notNull: true
+      notNull: true,
+      autoIncrement: true
     },
     keyword: {
       type: 'string',

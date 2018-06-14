@@ -29,18 +29,17 @@ export class Charity extends Entity {
   @property({
     type: 'string'
   })
+  email: string;
+
+  @property({
+    type: 'string'
+  })
   photoLink: string;
 
   @property({
     type: 'string'
-
   })
-
   photoLink2: string;
-  @property({
-    type: 'string'
-  })
-  email: string;
 
   @property({
     type: 'number'

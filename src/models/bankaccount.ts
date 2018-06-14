@@ -1,10 +1,16 @@
 import { property, Entity, model } from '@loopback/repository';
 
 @model({
-    name: "bankaccounts"
+    name: "bankaccount"
 })
 
-export class BankAccount extends Entity{
+export class BankAccount extends Entity {
+    @property({
+        type: 'number',
+        id: true
+    })
+    id: number;
+
     @property({
         type: 'number',
         required: true
@@ -24,8 +30,8 @@ export class BankAccount extends Entity{
     accountNum: number;
 
     @property({
-        type:'number',
-        required:true
+        type: 'number',
+        required: true
     })
     routingNum: number;
 

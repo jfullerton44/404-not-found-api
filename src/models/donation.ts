@@ -5,9 +5,10 @@ import { Entity, property, model } from '@loopback/repository';
 })
 export class Donation extends Entity {
   @property({
-    type: 'number'
+    type: 'number',
+    id: true
   })
-  amount_donated: number;
+  id: number;
 
   @property({
     type: 'number',
@@ -22,9 +23,14 @@ export class Donation extends Entity {
   user_id: number;
 
   @property({
+    type: 'number'
+  })
+  amount_donated: number;
+
+  @property({
     type: 'string'
   })
-  date: Date;
+  date: string;
 
 
   getId() {

@@ -71,35 +71,6 @@ export class RoleController {
     return await this.rolemapRepo.create(newRMap);
   }
 
-  @get('/rolemap/{role_id}')
-  async getUserIDsByRoleID(@param.path.number('role_id') role_id: number): Promise<Array<Number>> {
-    let roleExists: boolean = !!(await this.roleRepo.count({ id: role_id }));
-    if (!roleExists) {
-      throw new HttpErrors.BadRequest("Role does not exist");
-    }
-    let userArr = await this.rolemapRepo.find({ where: { role_id: role_id } });
-    return userArr.map(u => u.role_id);
-  }
-
-  @get('/rolemap/{user_id}')
-  async getRoleIDsByUserID(@param.path.number('user_id') user_id: number): Promise<Array<Number>> {
-    let userExists: boolean = !!(await this.userRepo.count({ id: user_id }));
-    if (!userExists) {
-      throw new HttpErrors.BadRequest("User does not exist");
-    }
-    let roleArr = await this.rolemapRepo.find({ where: { user_id: user_id } });
-    return roleArr.map(r => r.role_id);
-  }
-
-  @del('/rolemap/{user_id}')
-  async removeRolesByUserID(@param.path.number('user_id') user_id: number) {
-    let userExists: boolean = !!(await this.userRepo.count({ id: user_id }));
-    if (!userExists) {
-      throw new HttpErrors.BadRequest("Invalid user ID");
-    }
-    return await this.rolemapRepo.deleteAll({ where: { user_id: user_id } });
-  }
-
   @del('/rolemap/{role_id}')
   async removeUsersByRoleID(@param.path.number('role_id') role_id: number) {
     let roleExists: boolean = !!(await this.roleRepo.count({ id: role_id }));

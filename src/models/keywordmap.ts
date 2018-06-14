@@ -7,6 +7,11 @@ import { property, Entity, model } from '@loopback/repository';
 export class KeywordMap extends Entity {
   @property({
     type: 'number',
+    id: true
+  })
+  id: number;
+  @property({
+    type: 'number',
     required: true
   })
   project_id: number;

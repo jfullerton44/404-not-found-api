@@ -17,6 +17,12 @@ export class Payment_Method extends Entity {
   user_id: number;
 
   @property({
+    type: 'string',
+    required: true
+  })
+  name: string;
+
+  @property({
     type: 'number',
     length: 4
   })

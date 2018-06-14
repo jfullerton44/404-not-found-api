@@ -16,6 +16,11 @@ exports.setup = function (options, seedLink) {
 
 exports.up = function (db, callback) {
   db.createTable('donation', {
+    id: {
+      type: 'int',
+      primaryKey: true,
+      autoIncrement: true
+    },
     amount_donated: {
       type: 'int',
       notNull: true
@@ -47,7 +52,7 @@ exports.up = function (db, callback) {
       }
     },
     date: {
-      type: 'datetime'
+      type: 'string'
     }
   }, callback);
 };

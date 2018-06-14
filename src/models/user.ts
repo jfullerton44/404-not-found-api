@@ -40,9 +40,9 @@ export class User extends Entity {
   password: string;
 
   @property({
-    type: 'datetime',
+    type: 'string',
   })
-  dob: Date
+  dob: string
 
   getId() {
     return this.id;

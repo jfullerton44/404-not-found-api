@@ -23,15 +23,12 @@ exports.up = function (db, callback) {
     },
     user_id: {
       type: 'int',
-      defaultValue: -1
     },
     charity_id: {
       type: 'int',
-      defaultValue: -1
     },
     bank_id: {
       type: 'int',
-      defaultValue: -1
     },
     street: {
       type: 'string'
@@ -43,7 +40,7 @@ exports.up = function (db, callback) {
       type: 'string',
     },
     zip: {
-      type: 'number'
+      type: 'int'
     }
   }, callback);
 };

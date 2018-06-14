@@ -31,11 +31,17 @@ exports.up = function (db, callback) {
     descriptionFull: {
       type: 'text'
     },
+    email: {
+      type: 'text'
+    },
     photoLink: {
       type: 'string'
     },
     photoLink2: {
       type: 'string'
+    },
+    phone: {
+      type: 'int'
     },
     website: {
       type: 'string'

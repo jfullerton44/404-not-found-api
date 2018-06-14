@@ -16,7 +16,7 @@ export class KeywordsController {
     @repository(ProjectRepository.name) private projectRepo: ProjectRepository
   ) { }
 
-  @get('keyword/{keyword}')
+  @get('/keyword/{keyword}')
   async getIDbyKeyword(@param.path.string('keyword') keyword: string): Promise<Keyword> {
     let keywordExists = !!(await this.keyRepo.count({ keyword: keyword }))
     if (!keywordExists) {
@@ -30,8 +30,8 @@ export class KeywordsController {
     )
   };
 
-  @get('keyword/{id}')
-  async getKeywordByID(@param.path.number('id') id: number): Promise<Keyword> {
+  @get('/keyword')
+  async getKeywordByID(@param.query.number('id') id: number): Promise<Keyword> {
     let keywordExists = !!(await this.keyRepo.count({ id: id }));
     if (!keywordExists) {
       throw new HttpErrors.BadRequest("Invalid keyword ID");
@@ -56,23 +56,23 @@ export class KeywordsController {
   }
 
   @post('/keywordmap')
-  async createKeywordMap(@requestBody() keyword: Keyword, project: Project) {
-    let keywordExists: boolean = !!(await this.keyRepo.count({ id: keyword.id }));
+  async createKeywordMap(@requestBody() keymap: KeywordMap) {
+    let keywordExists: boolean = !!(await this.keyRepo.count({ id: keymap.keyword_id }));
     if (!keywordExists) {
       throw new HttpErrors.BadRequest("Keyword does not exist");
     }
-    let projectExists: boolean = !!(await this.projectRepo.count({ id: project.id }));
+    let projectExists: boolean = !!(await this.projectRepo.count({ id: keymap.project_id }));
     if (!projectExists) {
       throw new HttpErrors.BadRequest("Project does not exist");
     }
     let newKMap = new KeywordMap;
-    newKMap.keyword_id = keyword.id;
-    newKMap.project_id = project.id;
+    newKMap.keyword_id = keymap.keyword_id;
+    newKMap.project_id = keymap.project_id;
     return await this.keymapRepo.create(newKMap);
   }
 
-  @get('/keywordmap/{project_id}')
-  async getKeywordIDsByProjectID(@param.path.number('project_id') project_id: number): Promise<Array<Number>> {
+  @get('/keywordmap')
+  async getKeywordIDsByProjectID(@param.query.number('project_id') project_id: number): Promise<Array<Number>> {
     let projectExists: boolean = !!(await this.projectRepo.count({ id: project_id }));
     if (!projectExists) {
       throw new HttpErrors.BadRequest("Project does not exist");
@@ -81,8 +81,8 @@ export class KeywordsController {
     return keywordArr.map(k => k.keyword_id);
   }
 
-  @get('/keywordmap/{keyword_id}')
-  async getProjectIDsByKeywordID(@param.path.number('keyword_id') keyword_id: number): Promise<Array<Number>> {
+  @get('/keywordmap')
+  async getProjectIDsByKeywordID(@param.query.number('keyword_id') keyword_id: number): Promise<Array<Number>> {
     let keywordExists: boolean = !!(await this.keyRepo.count({ id: keyword_id }));
     if (!keywordExists) {
       throw new HttpErrors.BadRequest("Keyword does not exist");

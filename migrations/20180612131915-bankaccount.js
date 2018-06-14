@@ -16,6 +16,11 @@ exports.setup = function (options, seedLink) {
 
 exports.up = function (db, callback) {
   db.createTable('bankaccount', {
+    id: {
+      type: 'int',
+      primaryKey: true,
+      autoIncrement: true
+    },
     charity_id: {
       type: 'int',
       notNull: true,
