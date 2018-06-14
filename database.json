@@ -1,13 +1,47 @@
 {
-    "defaultEnv": {"ENV": "NODE_ENV"},
-    
+    "defaultEnv": {
+        "ENV": "NODE_ENV"
+    },
     "jake": {
         "driver": "mysql",
         "host": "localhost",
         "port": "3306",
-
-        "user": {"ENV":"DATABASE_USER"},
-        "password": {"ENV":"DATABASE_PASSWORD"},
-        "database": {"ENV":"DATABASE_NAME"}
-    }    
+        "user": {
+            "ENV": "DATABASE_USER"
+        },
+        "password": {
+            "ENV": "DATABASE_PASSWORD"
+        },
+        "database": {
+            "ENV": "DATABASE_NAME"
+        }
+    },
+    "julia": {
+        "driver": "mysql",
+        "host": "localhost",
+        "port": "3306",
+        "user": {
+            "ENV": "DATABASE_USER"
+        },
+        "password": {
+            "ENV": "DATABASE_PASSWORD"
+        },
+        "database": {
+            "ENV": "DATABASE_NAME"
+        }
+    },
+    "paul": {
+        "driver": "mysql",
+        "host": "localhost",
+        "port": "3306",
+        "user": {
+            "ENV": "DATABASE_USER"
+        },
+        "password": {
+            "ENV": "DATABASE_PASSWORD"
+        },
+        "database": {
+            "ENV": "DATABASE_NAME"
+        }
+    }
 }
