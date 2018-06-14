@@ -31,7 +31,7 @@ export class User extends Entity {
     type: 'string',
     required: true
   })
-  userName: string;
+  username: string;
 
   @property({
     type: 'string',

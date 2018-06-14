@@ -9,27 +9,27 @@ export class RegistrationController {
 
   constructor(
     @repository(UserRepository.name) private userRepo: UserRepository
-  ) {}
+  ) { }
 
   @post('/reg/users')
   async createUser(@requestBody() user: User) {
 
-    let hashedPassword = await bcrypt.hash(user.password,10);
+    let hashedPassword = await bcrypt.hash(user.password, 10);
     //var userToStore = new User();
-    user.password= hashedPassword;
+    user.password = hashedPassword;
 
     let userExists: boolean = !!(await this.userRepo.count({ email: user.email }));
-    if(userExists){
-      throw new HttpErrors.BadRequest("User already Exists");
+    if (userExists) {
+      throw new HttpErrors.BadRequest("Email already Exists");
     }
 
     let usernameTaken: boolean = !!(await this.userRepo.count({ username: user.username }));
-    if(usernameTaken){
-      throw new HttpErrors.BadRequest("Username Taken")
+    if (usernameTaken) {
+      throw new HttpErrors.BadRequest("Username Taken");
     }
 
     let storedUser = await this.userRepo.create(user);
-    storedUser.password="";
+    storedUser.password = "";
     var jwt = sign(
       {
         user: user
