@@ -42,9 +42,9 @@ export class Charity extends Entity {
   photoLink2: string;
 
   @property({
-    type: 'number'
+    type: 'string'
   })
-  phone: number;
+  phone: string;
 
   @property({
     type: 'string'

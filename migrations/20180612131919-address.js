@@ -40,7 +40,7 @@ exports.up = function (db, callback) {
       type: 'string',
     },
     zip: {
-      type: 'int'
+      type: 'string'
     }
   }, callback);
 };
