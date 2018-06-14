@@ -23,7 +23,7 @@ export class Payment_MethodController {
   }
 
   @get('/payment_methods/{id}')
-  async getUserByID(@param.path.number('id') id:number ): Promise<Payment_Method> {
+  async getPaymentByID(@param.path.number('id') id: number): Promise<Payment_Method> {
     let payment_methodExists: boolean = !!(await this.payment_methodRepo.count({ id }));
     if (!payment_methodExists) {
       throw new HttpErrors.BadRequest(`payment method ID ${id} does not exist`);

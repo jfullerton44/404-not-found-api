@@ -1,14 +1,14 @@
-import {Entity, property, model} from '@loopback/repository';
+import { Entity, property, model } from '@loopback/repository';
 
 @model({
-    name: "project"
+  name: "project"
 })
 export class Project extends Entity {
   @property({
     type: 'number',
     id: true
   })
-  id?: number;
+  id: number;
 
   @property({
     type: 'number',
@@ -33,7 +33,7 @@ export class Project extends Entity {
   })
   photoLink: string;
 
-  
+
   getId() {
     return this.id;
   }

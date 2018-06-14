@@ -45,7 +45,7 @@ exports.up = function (db, callback) {
       notNull: true
     },
     dob: {
-      type: 'datetime'
+      type: 'string'
     }
   }, callback);
 };

@@ -23,17 +23,26 @@ exports.up = function (db, callback) {
     },
     charity_id: {
       type: 'int',
-      notNull: true
+      notNull: true,
+      foreignKey: {
+        name: 'project_charity_id_foreign',
+        table: 'charity',
+        rules: {
+          onDelete: 'RESTRICT',
+          onUpdate: 'RESTRICT'
+        },
+        mapping: 'id'
+      }
     },
     name: {
-      type: 'text',
+      type: 'string',
       notNull: true
     },
     description: {
       type: 'text'
     },
     photolink: {
-      type: 'text'
+      type: 'string'
     }
   }, callback);
 };

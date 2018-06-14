@@ -1,11 +1,11 @@
 
-import {ApplicationConfig} from '@loopback/core';
-import {RestApplication, RestServer, RestBindings} from '@loopback/rest';
-import {MySequence} from './sequence';
+import { ApplicationConfig } from '@loopback/core';
+import { RestApplication, RestServer, RestBindings } from '@loopback/rest';
+import { MySequence } from './sequence';
 
 /* tslint:disable:no-unused-variable */
 // Binding and Booter imports are required to infer types for BootMixin!
-import {BootMixin, Booter, Binding} from '@loopback/boot';
+import { BootMixin, Booter, Binding } from '@loopback/boot';
 import {
   Class,
   Repository,

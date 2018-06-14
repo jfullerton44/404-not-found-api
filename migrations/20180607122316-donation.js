@@ -22,18 +22,37 @@ exports.up = function (db, callback) {
       autoIncrement: true
     },
     amount_donated: {
-      type: 'int'
+      type: 'int',
+      notNull: true
     },
     charity_id: {
       type: 'int',
-      notNull: true
+      notNull: true,
+      foreignKey: {
+        name: 'donation_charity_id_foreign',
+        table: 'charity',
+        rules: {
+          onDelete: 'RESTRICT',
+          onUpdate: 'RESTRICT'
+        },
+        mapping: 'id'
+      }
     },
     user_id: {
       type: 'int',
-      notNull: true
+      notNull: true,
+      foreignKey: {
+        name: 'donation_user_id_foreign',
+        table: 'user',
+        rules: {
+          onDelete: 'RESTRICT',
+          onUpdate: 'RESTRICT'
+        },
+        mapping: 'id'
+      }
     },
     date: {
-      type: 'datetime'
+      type: 'string'
     }
   }, callback);
 };

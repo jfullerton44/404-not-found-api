@@ -22,7 +22,7 @@ exports.up = function (db, callback) {
       autoIncrement: true
     },
     name: {
-      type: 'text',
+      type: 'string',
       notNull: true
     },
     description: {
@@ -31,14 +31,20 @@ exports.up = function (db, callback) {
     descriptionFull: {
       type: 'text'
     },
-    photoLink: {
+    email: {
       type: 'text'
+    },
+    photoLink: {
+      type: 'string'
     },
     photoLink2: {
-      type: 'text'
+      type: 'string'
+    },
+    phone: {
+      type: 'int'
     },
     website: {
-      type: 'text'
+      type: 'string'
     }
   }, callback);
 };
