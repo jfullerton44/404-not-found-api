@@ -3,6 +3,7 @@ import { UserRepository } from "../repositories/user.repository";
 import { post, get, requestBody, HttpErrors } from "@loopback/rest";
 import { User } from "../models/user";
 import * as bcrypt from 'bcrypt';
+import { sign } from "jsonwebtoken";
 
 export class RegistrationController {
 
@@ -29,7 +30,20 @@ export class RegistrationController {
 
     let storedUser = await this.userRepo.create(user);
     storedUser.password="";
-    return storedUser;
+    var jwt = sign(
+      {
+        user: user
+      },
+      'shh',
+      {
+        issuer: 'auth.ix.co.za',
+        audience: 'ix.co.za',
+      },
+    );
+
+    return {
+      token: jwt,
+    };
   }
 
   @get('/reg/users')

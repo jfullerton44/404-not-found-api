@@ -1,10 +1,13 @@
 {
-    "dev": {
+    "defaultEnv": {"ENV": "NODE_ENV"},
+    
+    "jake": {
         "driver": "mysql",
         "host": "localhost",
         "port": "3306",
-        "user": "root",
-        "password": "Xzl25p56p!",
-        "database": "charity_database"
-    }
+
+        "user": {"ENV":"DATABASE_USER"},
+        "password": {"ENV":"DATABASE_PASSWORD"},
+        "database": {"ENV":"DATABASE_NAME"}
+    }    
 }

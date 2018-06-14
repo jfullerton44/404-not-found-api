@@ -30,7 +30,13 @@
     "posttest": "npm run lint",
     "prestart": "npm run build:current",
     "start": "node .",
-    "prepublishOnly": "npm run test"
+    "prepublishOnly": "npm run test",
+    "updateStart":"db-migrate up; npm start",
+    "jake": "NODE_ENV=jake DATABASE_NAME=database DATABASE_USER=root DATABASE_PASSWORD=password npm run updateStart",
+    "julia": "NODE_ENV=julia DATABASE_NAME=teamproject DATABASE_USER=root DATABASE_PASSWORD=Livelife1 npm run updateStart",
+    "paul": "NODE_ENV=paul DATABASE_NAME=charity_database DATABASE_USER=root DATABASE_PASSWORD=Xzl25p56p! npm run updateStart"
+ 
+ 
   },
   "repository": {
     "type": "git"

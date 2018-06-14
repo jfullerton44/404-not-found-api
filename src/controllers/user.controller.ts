@@ -29,13 +29,12 @@ export class UserController {
   }
 
   @get('/users')
-  async getUserByKey(@param.query.string('jwt') jwt: string): Promise<any> {
+  async getUserByKey(@param.query.string('jwt') jwt:any ): Promise<any> {
     if (!jwt) {
       throw new HttpErrors.Unauthorized(`Need a jwt`);
     }
-    try {
-      var jwtBody = verify(jwt, 'shh');
-      console.log(jwtBody);
+    try{
+      var jwtBody = verify(jwt,'shh');
       return jwtBody;
     }
     catch (err) {
