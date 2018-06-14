@@ -40,8 +40,8 @@ export class Address extends Entity {
   state: string;
 
   @property({
-    type: 'number'
+    type: 'string'
   })
-  zip: number;
+  zip: string;
 
 }

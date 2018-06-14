@@ -41,7 +41,7 @@ exports.up = function (db, callback) {
       type: 'string'
     },
     phone: {
-      type: 'int'
+      type: 'string'
     },
     website: {
       type: 'string'

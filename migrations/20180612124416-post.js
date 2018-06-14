@@ -39,7 +39,7 @@ exports.up = function (db, callback) {
       notNull: true
     },
     body: {
-      type: 'string'
+      type: 'text'
     },
     photoLink: {
       type: 'string'

@@ -24,15 +24,15 @@ export class BankAccount extends Entity {
     bank_id: number;
 
     @property({
-        type: 'number',
+        type: 'string',
         required: true
     })
-    accountNum: number;
+    accountNum: string;
 
     @property({
-        type: 'number',
+        type: 'string',
         required: true
     })
-    routingNum: number;
+    routingNum: string;
 
 }

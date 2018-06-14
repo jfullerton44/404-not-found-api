@@ -39,7 +39,7 @@ exports.up = function (db, callback) {
       notNull: true
     },
     lastFourCardNum: {
-      type: 'int',
+      type: 'string',
       length: 4,
       notNull: true
     },
