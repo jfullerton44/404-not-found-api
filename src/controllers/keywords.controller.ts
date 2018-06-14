@@ -55,7 +55,7 @@ export class KeywordsController {
     return await this.keyRepo.create(key);
   }
 
-  @post('/keywordmap')
+  @post('/keywords')
   async createKeywordMap(@requestBody() keymap: KeywordMap) {
     let keywordExists: boolean = !!(await this.keyRepo.count({ id: keymap.keyword_id }));
     if (!keywordExists) {
@@ -71,17 +71,7 @@ export class KeywordsController {
     return await this.keymapRepo.create(newKMap);
   }
 
-  @get('/keywordmap')
-  async getKeywordIDsByProjectID(@param.query.number('project_id') project_id: number): Promise<Array<Number>> {
-    let projectExists: boolean = !!(await this.projectRepo.count({ id: project_id }));
-    if (!projectExists) {
-      throw new HttpErrors.BadRequest("Project does not exist");
-    }
-    let keywordArr = await this.keymapRepo.find({ where: { project_id: project_id } });
-    return keywordArr.map(k => k.keyword_id);
-  }
-
-  @get('/keywordmap')
+  @get('/keywords')
   async getProjectIDsByKeywordID(@param.query.number('keyword_id') keyword_id: number): Promise<Array<Number>> {
     let keywordExists: boolean = !!(await this.keyRepo.count({ id: keyword_id }));
     if (!keywordExists) {
@@ -91,7 +81,7 @@ export class KeywordsController {
     return projectArr.map(p => p.project_id);
   }
 
-  @del('/keywordmap/{project_id}')
+  @del('/keywords/{project_id}')
   async removeKeywordsByProjectID(@param.path.number('project_id') project_id: number) {
     let projectExists: boolean = !!(await this.projectRepo.count({ id: project_id }));
     if (!projectExists) {
@@ -100,7 +90,7 @@ export class KeywordsController {
     return await this.keymapRepo.deleteAll({ where: { project_id: project_id } });
   }
 
-  @del('/keywordmap/{keyword_id}')
+  @del('/keywords/{keyword_id}')
   async removeProjectsByKeywordID(@param.path.number('keyword_id') keyword_id: number) {
     let keywordExists: boolean = !!(await this.keyRepo.count({ id: keyword_id }));
     if (!keywordExists) {

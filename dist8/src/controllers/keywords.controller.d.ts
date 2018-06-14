@@ -12,7 +12,6 @@ export declare class KeywordsController {
     getKeywordByID(id: number): Promise<Keyword>;
     createNewKeyword(key: Keyword): Promise<Keyword>;
     createKeywordMap(keymap: KeywordMap): Promise<KeywordMap>;
-    getKeywordIDsByProjectID(project_id: number): Promise<Array<Number>>;
     getProjectIDsByKeywordID(keyword_id: number): Promise<Array<Number>>;
     removeKeywordsByProjectID(project_id: number): Promise<number>;
     removeProjectsByKeywordID(keyword_id: number): Promise<number>;

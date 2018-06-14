@@ -56,18 +56,18 @@ export class RoleController {
   }
 
   @post('/rolemap')
-  async createRoleMap(@requestBody() role: Role, user: User) {
-    let roleExists: boolean = !!(await this.roleRepo.count({ id: role.id }));
+  async createRoleMap(@requestBody() rolemap: Rolemap) {
+    let roleExists: boolean = !!(await this.roleRepo.count({ id: rolemap.role_id }));
     if (!roleExists) {
       throw new HttpErrors.BadRequest("Role does not exist");
     }
-    let userExists: boolean = !!(await this.userRepo.count({ id: user.id }));
+    let userExists: boolean = !!(await this.userRepo.count({ id: rolemap.user_id }));
     if (!userExists) {
       throw new HttpErrors.BadRequest("User does not exist");
     }
     let newRMap = new Rolemap;
-    newRMap.user_id = user.id;
-    newRMap.role_id = role.id;
+    newRMap.user_id = rolemap.user_id;
+    newRMap.role_id = rolemap.role_id;
     return await this.rolemapRepo.create(newRMap);
   }
 

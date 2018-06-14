@@ -69,14 +69,6 @@ let KeywordsController = class KeywordsController {
         newKMap.project_id = keymap.project_id;
         return await this.keymapRepo.create(newKMap);
     }
-    async getKeywordIDsByProjectID(project_id) {
-        let projectExists = !!(await this.projectRepo.count({ id: project_id }));
-        if (!projectExists) {
-            throw new rest_1.HttpErrors.BadRequest("Project does not exist");
-        }
-        let keywordArr = await this.keymapRepo.find({ where: { project_id: project_id } });
-        return keywordArr.map(k => k.keyword_id);
-    }
     async getProjectIDsByKeywordID(keyword_id) {
         let keywordExists = !!(await this.keyRepo.count({ id: keyword_id }));
         if (!keywordExists) {
@@ -136,35 +128,28 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], KeywordsController.prototype, "createNewKeyword", null);
 __decorate([
-    rest_1.post('/keywordmap'),
+    rest_1.post('/keywords'),
     __param(0, rest_1.requestBody()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [keywordmap_1.KeywordMap]),
     __metadata("design:returntype", Promise)
 ], KeywordsController.prototype, "createKeywordMap", null);
 __decorate([
-    rest_1.get('/keywordmap'),
-    __param(0, rest_1.param.query.number('project_id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
-    __metadata("design:returntype", Promise)
-], KeywordsController.prototype, "getKeywordIDsByProjectID", null);
-__decorate([
-    rest_1.get('/keywordmap'),
+    rest_1.get('/keywords'),
     __param(0, rest_1.param.query.number('keyword_id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], KeywordsController.prototype, "getProjectIDsByKeywordID", null);
 __decorate([
-    rest_1.del('/keywordmap/{project_id}'),
+    rest_1.del('/keywords/{project_id}'),
     __param(0, rest_1.param.path.number('project_id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], KeywordsController.prototype, "removeKeywordsByProjectID", null);
 __decorate([
-    rest_1.del('/keywordmap/{keyword_id}'),
+    rest_1.del('/keywords/{keyword_id}'),
     __param(0, rest_1.param.path.number('keyword_id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),

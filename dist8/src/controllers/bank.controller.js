@@ -19,11 +19,13 @@ const bankaccount_1 = require("../models/bankaccount");
 const bankaccount_repository_1 = require("../repositories/bankaccount.repository");
 const bank_1 = require("../models/bank");
 const charity_repository_1 = require("../repositories/charity.repository");
+const address_repository_1 = require("../repositories/address.repository");
 let BankController = class BankController {
-    constructor(bankRepo, bankaccRepo, charityRepo) {
+    constructor(bankRepo, bankaccRepo, charityRepo, addressRepo) {
         this.bankRepo = bankRepo;
         this.bankaccRepo = bankaccRepo;
         this.charityRepo = charityRepo;
+        this.addressRepo = addressRepo;
     }
     async createNewBank(bank) {
         let bankExists = !!(await this.bankRepo.count({ id: bank.id }));
@@ -48,13 +50,6 @@ let BankController = class BankController {
     }
     async getAllBanks() {
         return await this.bankRepo.find();
-    }
-    async getBankAccountsbyCharityID(charity_id) {
-        let charityExists = !!(await this.charityRepo.count({ id: charity_id }));
-        if (!charityExists) {
-            throw new rest_1.HttpErrors.BadRequest("Charity does not exist");
-        }
-        return await this.bankaccRepo.find({ where: { charity_id: charity_id } });
     }
     async getBankAccountsbyBankID(bank_id) {
         let charityExists = !!(await this.bankRepo.count({ id: bank_id }));
@@ -95,6 +90,17 @@ let BankController = class BankController {
         }
         return await this.bankaccRepo.delete(bankacc);
     }
+    async getAddressforBankID(bank_id) {
+        let bankExists = !!(await this.bankRepo.count({ id: bank_id }));
+        if (!bankExists) {
+            throw new rest_1.HttpErrors.BadRequest('Invalid bank ID');
+        }
+        let addressExists = !!(await this.addressRepo.count({ bank_id: bank_id }));
+        if (!addressExists) {
+            throw new rest_1.HttpErrors.BadRequest('No address registered for Bank ID');
+        }
+        return this.addressRepo.findOne({ where: { bank_id: bank_id } });
+    }
 };
 __decorate([
     rest_1.post('/bank'),
@@ -124,15 +130,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], BankController.prototype, "getAllBanks", null);
 __decorate([
-    rest_1.get('/bankaccounts'),
-    __param(0, rest_1.param.query.number('charity_id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
-    __metadata("design:returntype", Promise)
-], BankController.prototype, "getBankAccountsbyCharityID", null);
-__decorate([
-    rest_1.get('/bankaccounts'),
-    __param(0, rest_1.param.query.number('bank_id')),
+    rest_1.get('/banks/{bank_id}/accounts'),
+    __param(0, rest_1.param.path.number('bank_id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
@@ -145,33 +144,42 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], BankController.prototype, "getBankAccountsByAccountNum", null);
 __decorate([
-    rest_1.del('/bankaccounts/{charity_id}'),
-    __param(0, rest_1.param.path.number('charity_id')),
+    rest_1.del('/bankaccounts'),
+    __param(0, rest_1.param.query.number('charity_id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], BankController.prototype, "removeBankAccountbyCharityID", null);
 __decorate([
-    rest_1.del('/bank/{bank_id}'),
-    __param(0, rest_1.param.path.number('bank_id')),
+    rest_1.del('/bank'),
+    __param(0, rest_1.param.query.number('bank_id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], BankController.prototype, "removeBanksbyBankID", null);
 __decorate([
-    rest_1.del('/keywordmap'),
+    rest_1.del('/bankaccounts'),
     __param(0, rest_1.requestBody()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [bankaccount_1.BankAccount]),
     __metadata("design:returntype", Promise)
 ], BankController.prototype, "removeBankAccount", null);
+__decorate([
+    rest_1.get('/banks/{bank_id}/address'),
+    __param(0, rest_1.param.path.number('bank_id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], BankController.prototype, "getAddressforBankID", null);
 BankController = __decorate([
     __param(0, repository_1.repository(bank_repository_1.BankRepository.name)),
     __param(1, repository_1.repository(bankaccount_repository_1.BankAccountRepository.name)),
     __param(2, repository_1.repository(charity_repository_1.CharityRepository.name)),
+    __param(3, repository_1.repository(address_repository_1.AddressRepository.name)),
     __metadata("design:paramtypes", [bank_repository_1.BankRepository,
         bankaccount_repository_1.BankAccountRepository,
-        charity_repository_1.CharityRepository])
+        charity_repository_1.CharityRepository,
+        address_repository_1.AddressRepository])
 ], BankController);
 exports.BankController = BankController;
 //# sourceMappingURL=bank.controller.js.map
