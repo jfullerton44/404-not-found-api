@@ -203,3 +203,5 @@ dist8/src/datasources/README 2.md
 dist8/src/models/README 2.md
 dist8/src/repositories/README 2.md
 dist8/test/README 2.md
+dist8/src/models/bankaccount.js
+dist8/src/models/bankaccount.d.ts
