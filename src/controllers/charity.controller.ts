@@ -101,7 +101,9 @@ export class CharityController {
   }
 
   @get('/charities/{charity_id}/projects')
-  async getProjectsForCharityID(@param.path.number('charity_id') charity_id: number): Promise<Array<Project>> {
+  async getProjectsForCharityID(
+    @param.path.number('charity_id') charity_id: number)
+    : Promise<Array<Project>> {
     let charityExists: boolean = !!(await this.charityRepo.count({ id: charity_id }));
     if (!charityExists) {
       throw new HttpErrors.BadRequest("Charity does not exist")
@@ -109,21 +111,21 @@ export class CharityController {
     return await this.projectRepo.find({ where: { charity_id: charity_id } });
   }
 
-  @get('/charities/{charity_id}/projects')
-  async getProjectbyID(
-    @param.path.number('charity_id') charity_id: number,
-    @param.path.number('project_id') project_id: number
-  ) {
-    let charityExists: boolean = !!(await this.charityRepo.count({ id: charity_id }));
-    if (!charityExists) {
-      throw new HttpErrors.BadRequest("Charity does not exist")
-    }
-    let projectExists: boolean = !!(await this.projectRepo.count({ project_id }));
-    if (!projectExists) {
-      throw new HttpErrors.BadRequest(`Invalid project ID`);
-    }
-    return await this.projectRepo.findById(project_id);
-  }
+  // @get('/charities/{charity_id}/projects')
+  // async getProjectbyID(
+  //   @param.path.number('charity_id') charity_id: number,
+  //   @param.path.number('project_id') project_id: number
+  // ) {
+  //   let charityExists: boolean = !!(await this.charityRepo.count({ id: charity_id }));
+  //   if (!charityExists) {
+  //     throw new HttpErrors.BadRequest("Charity does not exist")
+  //   }
+  //   let projectExists: boolean = !!(await this.projectRepo.count({ project_id }));
+  //   if (!projectExists) {
+  //     throw new HttpErrors.BadRequest(`Invalid project ID`);
+  //   }
+  //   return await this.projectRepo.findById(project_id);
+  // }
 
   @get('/charities/{charity_id}/projects/{project_id}/posts')
   async getPostsForProjectID(

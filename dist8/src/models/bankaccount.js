@@ -35,17 +35,17 @@ __decorate([
 ], BankAccount.prototype, "bank_id", void 0);
 __decorate([
     repository_1.property({
-        type: 'number',
+        type: 'string',
         required: true
     }),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], BankAccount.prototype, "accountNum", void 0);
 __decorate([
     repository_1.property({
-        type: 'number',
+        type: 'string',
         required: true
     }),
-    __metadata("design:type", Number)
+    __metadata("design:type", String)
 ], BankAccount.prototype, "routingNum", void 0);
 BankAccount = __decorate([
     repository_1.model({
