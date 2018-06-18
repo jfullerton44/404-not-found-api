@@ -18,7 +18,6 @@
     "build:dist10": "lb-tsc es2018",
     "build:watch": "lb-tsc --watch",
     "clean": "lb-clean dist*",
-    "tsc": "./node_modules/typescript/bin/tsc",
     "lint": "npm run prettier:check && npm run tslint",
     "lint:fix": "npm run prettier:fix && npm run tslint:fix",
     "prettier:cli": "lb-prettier \"**/*.ts\" \"**/*.js\"",
