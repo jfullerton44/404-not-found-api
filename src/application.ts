@@ -52,8 +52,8 @@ export class SafariApiApplication extends BootMixin(
 
     var dataSourceConfig = new juggler.DataSource({
       name: "db",
-      connector: "memory"
-    })
+      connector: 'memory'
+    });
     this.dataSource(dataSourceConfig);
   }
 
