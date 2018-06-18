@@ -37,18 +37,23 @@ export class SafariApiApplication extends BootMixin(
 
     var enviroment = process.env.NODE_ENV;
     var databaseName = process.env.DATABASE_NAME as string;
-    var databasePassword =process.env.DATABASE_PASSWORD as string;
+    var databasePassword = process.env.DATABASE_PASSWORD as string;
     var databaseUser = process.env.DATABASE_USER as string;
+
+    // var dataSourceConfig = new juggler.DataSource({
+    //   name: "db",
+    //   connector: "loopback-connector-mysql",
+    //   host:'localhost',
+    //   port: 3306,
+    //   database: databaseName,
+    //   user: databaseUser,
+    //   password: databasePassword
+    // });
 
     var dataSourceConfig = new juggler.DataSource({
       name: "db",
-      connector: "loopback-connector-mysql",
-      host:'localhost',
-      port: 3306,
-      database: databaseName,
-      user: databaseUser,
-      password: databasePassword
-    });
+      connector: "memory"
+    })
     this.dataSource(dataSourceConfig);
   }
 
