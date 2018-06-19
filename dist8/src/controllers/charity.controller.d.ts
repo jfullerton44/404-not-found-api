@@ -1,0 +1,32 @@
+import { CharityRepository } from "../repositories/charity.repository";
+import { Charity } from "../models/charity";
+import { Address } from "../models/address";
+import { AddressRepository } from "../repositories/address.repository";
+import { BankAccount } from "../models/bankaccount";
+import { BankAccountRepository } from "../repositories/bankaccount.repository";
+import { Project } from "../models/projects";
+import { ProjectRepository } from "../repositories/project.repository";
+import { PostRepository } from "../repositories/post.repository";
+import { Post } from "../models/posts";
+import { KeywordMapRepository } from "../repositories/keywordmap.repository";
+export declare class CharityController {
+    private charityRepo;
+    private addressRepo;
+    private bankaccRepo;
+    private projectRepo;
+    private postRepo;
+    private keymapRepo;
+    constructor(charityRepo: CharityRepository, addressRepo: AddressRepository, bankaccRepo: BankAccountRepository, projectRepo: ProjectRepository, postRepo: PostRepository, keymapRepo: KeywordMapRepository);
+    createCharity(charity: Charity): Promise<Charity>;
+    getAllCharities(): Promise<Array<Charity>>;
+    getCharityByID(id: number): Promise<Charity>;
+    deleteCharityByID(id: number): Promise<Boolean>;
+    updateCharity(id: number, charity: Charity): Promise<boolean>;
+    replaceCharity(id: number, charity: Charity): Promise<boolean>;
+    getAddressforCharityID(charity_id: number): Promise<Address>;
+    getBankAccountsForCharityID(charity_id: number): Promise<Array<BankAccount>>;
+    getProjectsForCharityID(charity_id: number): Promise<Array<Project>>;
+    getProjectbyID(charity_id: number, project_id: number): Promise<Project>;
+    getPostsForProjectID(charity_id: number, project_id: number): Promise<Array<Post>>;
+    getKeywordIDsForProjectID(charity_id: number, project_id: number): Promise<Array<Number>>;
+}
