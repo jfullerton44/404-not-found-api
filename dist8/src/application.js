@@ -9,7 +9,11 @@ const repository_1 = require("@loopback/repository");
 /* tslint:enable:no-unused-variable */
 class SafariApiApplication extends boot_1.BootMixin(repository_1.RepositoryMixin(rest_1.RestApplication)) {
     constructor(options) {
-        super(options);
+        super({
+            rest: {
+                port: process.env.PORT || 3000
+            }
+        });
         // Set up the custom sequence
         this.sequence(sequence_1.MySequence);
         this.projectRoot = __dirname;
@@ -26,18 +30,14 @@ class SafariApiApplication extends boot_1.BootMixin(repository_1.RepositoryMixin
         var databaseName = process.env.DATABASE_NAME;
         var databasePassword = process.env.DATABASE_PASSWORD;
         var databaseUser = process.env.DATABASE_USER;
-        // var dataSourceConfig = new juggler.DataSource({
-        //   name: "db",
-        //   connector: "loopback-connector-mysql",
-        //   host:'localhost',
-        //   port: 3306,
-        //   database: databaseName,
-        //   user: databaseUser,
-        //   password: databasePassword
-        // });
         var dataSourceConfig = new repository_1.juggler.DataSource({
             name: "db",
-            connector: 'memory'
+            connector: "loopback-connector-mysql",
+            host: process.env.DATABASE_HOST,
+            port: 3306,
+            database: process.env.DATABASE_NAME,
+            user: process.env.DATABASE_USER,
+            password: process.env.DATABASE_PASSWORD
         });
         this.dataSource(dataSourceConfig);
     }
