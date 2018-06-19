@@ -9,6 +9,8 @@ import { ProjectRepository } from "../repositories/project.repository";
 import { PostRepository } from "../repositories/post.repository";
 import { Post } from "../models/posts";
 import { KeywordMapRepository } from "../repositories/keywordmap.repository";
+import { DonationRepository } from "../repositories/donation.repository";
+import { Donation } from "../models/donation";
 export declare class CharityController {
     private charityRepo;
     private addressRepo;
@@ -16,7 +18,8 @@ export declare class CharityController {
     private projectRepo;
     private postRepo;
     private keymapRepo;
-    constructor(charityRepo: CharityRepository, addressRepo: AddressRepository, bankaccRepo: BankAccountRepository, projectRepo: ProjectRepository, postRepo: PostRepository, keymapRepo: KeywordMapRepository);
+    private donationRepo;
+    constructor(charityRepo: CharityRepository, addressRepo: AddressRepository, bankaccRepo: BankAccountRepository, projectRepo: ProjectRepository, postRepo: PostRepository, keymapRepo: KeywordMapRepository, donationRepo: DonationRepository);
     createCharity(charity: Charity): Promise<Charity>;
     getAllCharities(): Promise<Array<Charity>>;
     getCharityByID(id: number): Promise<Charity>;
@@ -26,6 +29,7 @@ export declare class CharityController {
     getAddressforCharityID(charity_id: number): Promise<Address>;
     getBankAccountsForCharityID(charity_id: number): Promise<Array<BankAccount>>;
     getProjectsForCharityID(charity_id: number): Promise<Array<Project>>;
+    getDonationsForCharityID(charity_id: number): Promise<Array<Donation>>;
     getProjectbyID(charity_id: number, project_id: number): Promise<Project>;
     getPostsForProjectID(charity_id: number, project_id: number): Promise<Array<Post>>;
     getKeywordIDsForProjectID(charity_id: number, project_id: number): Promise<Array<Number>>;
