@@ -42,20 +42,20 @@
         },
         "database": {
             "ENV": "DATABASE_NAME"
+        }
+    },
+    "live": {
+        "driver": "mysql",
+        "host": "DATABASE_HOST",
+        "port": "3306",
+        "user": {
+            "ENV": "DATABASE_USER"
         },
-        "live": {
-            "driver": "mysql",
-            "host": "DATABASE_HOST",
-            "port": "3306",
-            "user": {
-                "ENV": "DATABASE_USER"
-            },
-            "password": {
-                "ENV": "DATABASE_PASSWORD"
-            },
-            "database": {
-                "ENV": "DATABASE_NAME"
-            }
+        "password": {
+            "ENV": "DATABASE_PASSWORD"
+        },
+        "database": {
+            "ENV": "DATABASE_NAME"
         }
     }
 }
