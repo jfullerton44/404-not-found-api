@@ -18,8 +18,6 @@ export class SafariApiApplication extends BootMixin(
   RepositoryMixin(RestApplication)
 ) {
   constructor(options?: ApplicationConfig) {
-    //super(options);
-
     super({
       rest: {
         port: process.env.PORT || 3000
