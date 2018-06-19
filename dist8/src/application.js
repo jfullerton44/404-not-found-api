@@ -27,9 +27,9 @@ class SafariApiApplication extends boot_1.BootMixin(repository_1.RepositoryMixin
             },
         };
         var enviroment = process.env.NODE_ENV;
-        var databaseName = process.env.DATABASE_NAME;
-        var databasePassword = process.env.DATABASE_PASSWORD;
-        var databaseUser = process.env.DATABASE_USER;
+        // var databaseName = process.env.DATABASE_NAME as string;
+        // var databasePassword = process.env.DATABASE_PASSWORD as string;
+        // var databaseUser = process.env.DATABASE_USER as string;
         var dataSourceConfig = new repository_1.juggler.DataSource({
             name: "db",
             connector: "loopback-connector-mysql",
