@@ -43,7 +43,7 @@
         "database": {
             "ENV": "DATABASE_NAME"
         },
-        "jake": {
+        "live": {
             "driver": "mysql",
             "host": "DATABASE_HOST",
             "port": "3306",
