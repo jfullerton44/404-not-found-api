@@ -14,6 +14,8 @@ import { PostRepository } from "../repositories/post.repository";
 import { Post } from "../models/posts";
 import { Keyword } from "../models/keyword";
 import { KeywordMapRepository } from "../repositories/keywordmap.repository";
+import { DonationRepository } from "../repositories/donation.repository";
+import { Donation } from "../models/donation";
 
 export class CharityController {
 
@@ -23,7 +25,8 @@ export class CharityController {
     @repository(BankAccountRepository.name) private bankaccRepo: BankAccountRepository,
     @repository(ProjectRepository.name) private projectRepo: ProjectRepository,
     @repository(PostRepository.name) private postRepo: PostRepository,
-    @repository(KeywordMapRepository.name) private keymapRepo: KeywordMapRepository
+    @repository(KeywordMapRepository.name) private keymapRepo: KeywordMapRepository,
+    @repository(DonationRepository) private donationRepo: DonationRepository
   ) { }
 
   @post('/charityReg')
@@ -109,6 +112,17 @@ export class CharityController {
       throw new HttpErrors.BadRequest("Charity does not exist")
     }
     return await this.projectRepo.find({ where: { charity_id: charity_id } });
+  }
+
+  @get('/charities/{charity_id}/donations')
+  async getDonationsForCharityID(
+    @param.path.number('charity_id') charity_id: number)
+    : Promise<Array<Donation>> {
+    let charityExists: boolean = !!(await this.charityRepo.count({ id: charity_id }));
+    if (!charityExists) {
+      throw new HttpErrors.BadRequest("Charity does not exist")
+    }
+    return await this.donationRepo.find({ where: { charity_id: charity_id } });
   }
 
   @get('/charities/{charity_id}/projects/{project_id}')
