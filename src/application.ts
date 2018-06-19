@@ -24,7 +24,7 @@ export class SafariApiApplication extends BootMixin(
       rest: {
         port: process.env.PORT || 3000
       }
-    })
+    });
 
     // Set up the custom sequence
     this.sequence(MySequence);
