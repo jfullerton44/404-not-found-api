@@ -4,7 +4,7 @@
     },
     "jake": {
         "driver": "mysql",
-        "host": "localhost",
+        "host": "DATABASE_HOST",
         "port": "3306",
         "user": {
             "ENV": "DATABASE_USER"
@@ -42,6 +42,20 @@
         },
         "database": {
             "ENV": "DATABASE_NAME"
+        },
+        "jake": {
+            "driver": "mysql",
+            "host": "DATABASE_HOST",
+            "port": "3306",
+            "user": {
+                "ENV": "DATABASE_USER"
+            },
+            "password": {
+                "ENV": "DATABASE_PASSWORD"
+            },
+            "database": {
+                "ENV": "DATABASE_NAME"
+            }
         }
     }
 }

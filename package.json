@@ -32,6 +32,7 @@
     "start": "node .",
     "prepublishOnly": "npm run test",
     "updateStart": "db-migrate up; npm start",
+    "live": "NODE_ENV=live db-migrate up && node .",
     "migrateDown": "NODE_ENV=jake DATABASE_NAME=database DATABASE_USER=root DATABASE_PASSWORD=password db-migrate down",
     "jake": "NODE_ENV=jake DATABASE_NAME=database DATABASE_USER=root DATABASE_PASSWORD=password npm run updateStart",
     "julia": "NODE_ENV=julia DATABASE_NAME=teamproject DATABASE_USER=root DATABASE_PASSWORD=Livelife1 npm run updateStart",
