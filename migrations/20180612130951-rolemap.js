@@ -28,8 +28,8 @@ exports.up = function (db, callback) {
         name: 'rolemap_user_id_foreign',
         table: 'user',
         rules: {
-          onDelete: 'RESTRICT',
-          onUpdate: 'RESTRICT'
+          onDelete: 'CASCADE',
+          onUpdate: 'CASCADE'
         },
         mapping: 'id'
       }

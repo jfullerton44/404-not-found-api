@@ -32,8 +32,8 @@ exports.up = function (db, callback) {
         name: 'donation_charity_id_foreign',
         table: 'charity',
         rules: {
-          onDelete: 'RESTRICT',
-          onUpdate: 'RESTRICT'
+          onDelete: 'CASCADE',
+          onUpdate: 'CASCADE'
         },
         mapping: 'id'
       }
@@ -45,8 +45,8 @@ exports.up = function (db, callback) {
         name: 'donation_user_id_foreign',
         table: 'user',
         rules: {
-          onDelete: 'RESTRICT',
-          onUpdate: 'RESTRICT'
+          onDelete: 'CASCADE',
+          onUpdate: 'CASCADE'
         },
         mapping: 'id'
       }

@@ -28,8 +28,8 @@ exports.up = function (db, callback) {
         name: 'keywordmap_project_id_foreign',
         table: 'project',
         rules: {
-          onDelete: 'RESTRICT',
-          onUpdate: 'RESTRICT'
+          onDelete: 'CASCADE',
+          onUpdate: 'CASCADE'
         },
         mapping: 'id'
       }
