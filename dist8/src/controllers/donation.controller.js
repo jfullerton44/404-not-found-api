@@ -18,11 +18,13 @@ const repository_1 = require("@loopback/repository");
 const rest_1 = require("@loopback/rest");
 const donation_1 = require("../models/donation");
 const charity_repository_1 = require("../repositories/charity.repository");
+const payment_method_repository_1 = require("../repositories/payment_method.repository");
 let DonationController = class DonationController {
-    constructor(donationRepo, userRepo, charityRepo) {
+    constructor(donationRepo, userRepo, charityRepo, paymentRepo) {
         this.donationRepo = donationRepo;
         this.userRepo = userRepo;
         this.charityRepo = charityRepo;
+        this.paymentRepo = paymentRepo;
     }
     /*
       @post('/donations2/{user_id}/{charity_id}')
@@ -58,7 +60,7 @@ let DonationController = class DonationController {
         return await this.donationRepo.create(donation);
       }
     */
-    async newDonation(donation) {
+    async newDonation(donation, donate) {
         let userExists = !!(await this.userRepo.count({ id: donation.user_id }));
         if (!userExists) {
             throw new rest_1.HttpErrors.Unauthorized('User Does not exist');
@@ -66,6 +68,10 @@ let DonationController = class DonationController {
         let charityExists = !!(await this.charityRepo.count({ id: donation.charity_id }));
         if (!charityExists) {
             throw new rest_1.HttpErrors.Unauthorized('Charity Does not exist');
+        }
+        let paymentExists = !!(await this.paymentRepo).count({ id: donation.pm_id });
+        if (!paymentExists) {
+            throw new rest_1.HttpErrors.Unauthorized('Payment does not exist');
         }
         return await this.donationRepo.create(donation);
     }
@@ -91,7 +97,7 @@ __decorate([
     rest_1.post('/donations'),
     __param(0, rest_1.requestBody()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [donation_1.Donation]),
+    __metadata("design:paramtypes", [donation_1.Donation, donation_1.Donation]),
     __metadata("design:returntype", Promise)
 ], DonationController.prototype, "newDonation", null);
 __decorate([
@@ -118,9 +124,11 @@ DonationController = __decorate([
     __param(0, repository_1.repository(donation_repository_1.DonationRepository.name)),
     __param(1, repository_1.repository(user_repository_1.UserRepository.name)),
     __param(2, repository_1.repository(charity_repository_1.CharityRepository.name)),
+    __param(3, repository_1.repository(payment_method_repository_1.Payment_MethodRepository)),
     __metadata("design:paramtypes", [donation_repository_1.DonationRepository,
         user_repository_1.UserRepository,
-        charity_repository_1.CharityRepository])
+        charity_repository_1.CharityRepository,
+        payment_method_repository_1.Payment_MethodRepository])
 ], DonationController);
 exports.DonationController = DonationController;
 //# sourceMappingURL=donation.controller.js.map
