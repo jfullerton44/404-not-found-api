@@ -4,6 +4,7 @@ export declare class Payment_Method extends Entity {
     user_id: number;
     name: string;
     lastFourCardNum: string;
-    cardToken: string;
+    cardSource: string;
+    clientID: string;
     getId(): number | undefined;
 }

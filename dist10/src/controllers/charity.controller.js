@@ -21,14 +21,16 @@ const bankaccount_repository_1 = require("../repositories/bankaccount.repository
 const project_repository_1 = require("../repositories/project.repository");
 const post_repository_1 = require("../repositories/post.repository");
 const keywordmap_repository_1 = require("../repositories/keywordmap.repository");
+const donation_repository_1 = require("../repositories/donation.repository");
 let CharityController = class CharityController {
-    constructor(charityRepo, addressRepo, bankaccRepo, projectRepo, postRepo, keymapRepo) {
+    constructor(charityRepo, addressRepo, bankaccRepo, projectRepo, postRepo, keymapRepo, donationRepo) {
         this.charityRepo = charityRepo;
         this.addressRepo = addressRepo;
         this.bankaccRepo = bankaccRepo;
         this.projectRepo = projectRepo;
         this.postRepo = postRepo;
         this.keymapRepo = keymapRepo;
+        this.donationRepo = donationRepo;
     }
     async createCharity(charity) {
         let charityExists = !!(await this.charityRepo.count({ name: charity.name }));
@@ -86,6 +88,13 @@ let CharityController = class CharityController {
             throw new rest_1.HttpErrors.BadRequest("Charity does not exist");
         }
         return await this.projectRepo.find({ where: { charity_id: charity_id } });
+    }
+    async getDonationsForCharityID(charity_id) {
+        let charityExists = !!(await this.charityRepo.count({ id: charity_id }));
+        if (!charityExists) {
+            throw new rest_1.HttpErrors.BadRequest("Charity does not exist");
+        }
+        return await this.donationRepo.find({ where: { charity_id: charity_id } });
     }
     async getProjectbyID(charity_id, project_id) {
         let charityExists = !!(await this.charityRepo.count({ id: charity_id }));
@@ -187,6 +196,13 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CharityController.prototype, "getProjectsForCharityID", null);
 __decorate([
+    rest_1.get('/charities/{charity_id}/donations'),
+    __param(0, rest_1.param.path.number('charity_id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], CharityController.prototype, "getDonationsForCharityID", null);
+__decorate([
     rest_1.get('/charities/{charity_id}/projects/{project_id}'),
     __param(0, rest_1.param.path.number('charity_id')),
     __param(1, rest_1.param.path.number('project_id')),
@@ -217,12 +233,14 @@ CharityController = __decorate([
     __param(3, repository_1.repository(project_repository_1.ProjectRepository.name)),
     __param(4, repository_1.repository(post_repository_1.PostRepository.name)),
     __param(5, repository_1.repository(keywordmap_repository_1.KeywordMapRepository.name)),
+    __param(6, repository_1.repository(donation_repository_1.DonationRepository)),
     __metadata("design:paramtypes", [charity_repository_1.CharityRepository,
         address_repository_1.AddressRepository,
         bankaccount_repository_1.BankAccountRepository,
         project_repository_1.ProjectRepository,
         post_repository_1.PostRepository,
-        keywordmap_repository_1.KeywordMapRepository])
+        keywordmap_repository_1.KeywordMapRepository,
+        donation_repository_1.DonationRepository])
 ], CharityController);
 exports.CharityController = CharityController;
 //# sourceMappingURL=charity.controller.js.map

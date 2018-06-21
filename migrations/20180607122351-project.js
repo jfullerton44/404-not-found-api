@@ -28,8 +28,8 @@ exports.up = function (db, callback) {
         name: 'project_charity_id_foreign',
         table: 'charity',
         rules: {
-          onDelete: 'RESTRICT',
-          onUpdate: 'RESTRICT'
+          onDelete: 'CASCADE',
+          onUpdate: 'CASCADE'
         },
         mapping: 'id'
       }
