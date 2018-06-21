@@ -30,6 +30,7 @@ exports.up = function (db, callback) {
       notNull: true,
       foreignKey: {
         name: 'donation_pm_id_foreign',
+        table: 'payment_method',
         rules: {
           onDelete: 'RESTRICT',
           onUpdate: 'RESTRICT'
