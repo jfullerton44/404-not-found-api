@@ -33,6 +33,7 @@
     "prepublishOnly": "npm run test",
     "updateStart": "db-migrate up; npm start",
     "live": "NODE_ENV=live db-migrate up; node .",
+    "migrateUpLive": "NODE_ENV=live db-migrate up",
     "migrateDown": "NODE_ENV=jake DATABASE_NAME=database DATABASE_USER=root DATABASE_PASSWORD=password db-migrate down",
     "migrateDownLive": "NODE_ENV=live db-migrate down",
     "jake": "NODE_ENV=jake DATABASE_NAME=database DATABASE_USER=root DATABASE_PASSWORD=password npm run updateStart",
