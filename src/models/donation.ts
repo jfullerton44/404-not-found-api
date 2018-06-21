@@ -23,6 +23,12 @@ export class Donation extends Entity {
   user_id: number;
 
   @property({
+    type: 'int',
+    required: true
+  })
+  pm_id: number;
+
+  @property({
     type: 'number'
   })
   amount_donated: number;

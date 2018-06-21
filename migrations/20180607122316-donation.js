@@ -25,6 +25,18 @@ exports.up = function (db, callback) {
       type: 'int',
       notNull: true
     },
+    pm_id: {
+      type: 'int',
+      notNull: true,
+      foreignKey: {
+        name: 'donation_pm_id_foreign',
+        rules: {
+          onDelete: 'RESTRICT',
+          onUpdate: 'RESTRICT'
+        },
+        mapping: 'id'
+      }
+    },
     charity_id: {
       type: 'int',
       notNull: true,
