@@ -53,7 +53,7 @@ export class DonationController {
   */
   @post('/donations')
   async newDonation(
-    @requestBody() donation: Donation, donate: Donation
+    @requestBody() donation: Donation
   ) {
     let userExists: boolean = !!(await this.userRepo.count({ id: donation.user_id }));
     if (!userExists) {
