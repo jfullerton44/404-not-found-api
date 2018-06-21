@@ -9,7 +9,7 @@ export declare class DonationController {
     private charityRepo;
     private paymentRepo;
     constructor(donationRepo: DonationRepository, userRepo: UserRepository, charityRepo: CharityRepository, paymentRepo: Payment_MethodRepository);
-    newDonation(donation: Donation, donate: Donation): Promise<Donation>;
+    newDonation(donation: Donation): Promise<Donation>;
     getAllDonations(): Promise<Array<Donation>>;
     getDonationsbyCharityID(charity_id: number): Promise<Array<Donation>>;
     getDonationsbyUserID(user_id: number): Promise<Array<Donation>>;
