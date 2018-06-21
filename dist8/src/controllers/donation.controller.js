@@ -60,7 +60,7 @@ let DonationController = class DonationController {
         return await this.donationRepo.create(donation);
       }
     */
-    async newDonation(donation, donate) {
+    async newDonation(donation) {
         let userExists = !!(await this.userRepo.count({ id: donation.user_id }));
         if (!userExists) {
             throw new rest_1.HttpErrors.Unauthorized('User Does not exist');
@@ -97,7 +97,7 @@ __decorate([
     rest_1.post('/donations'),
     __param(0, rest_1.requestBody()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [donation_1.Donation, donation_1.Donation]),
+    __metadata("design:paramtypes", [donation_1.Donation]),
     __metadata("design:returntype", Promise)
 ], DonationController.prototype, "newDonation", null);
 __decorate([
