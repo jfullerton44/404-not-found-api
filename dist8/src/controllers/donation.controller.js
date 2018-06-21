@@ -60,7 +60,7 @@ let DonationController = class DonationController {
         return await this.donationRepo.create(donation);
       }
     */
-    async newDonation(donation, donate) {
+    async newDonation(donation) {
         let userExists = !!(await this.userRepo.count({ id: donation.user_id }));
         if (!userExists) {
             throw new rest_1.HttpErrors.Unauthorized('User Does not exist');
@@ -73,6 +73,17 @@ let DonationController = class DonationController {
         if (!paymentExists) {
             throw new rest_1.HttpErrors.Unauthorized('Payment does not exist');
         }
+        console.log("Donation");
+        var payment = await this.paymentRepo.findById(donation.pm_id);
+        console.log("Don");
+        var stripe = require("stripe")("sk_test_3P0s9sObeFYsv3djqj0ec7kJ");
+        var charge = await stripe.charges.create({
+            amount: donation.amount_donated,
+            currency: "usd",
+            source: payment.cardSource,
+            description: "$" + donation.amount_donated + " charged"
+        });
+        console.log("after");
         return await this.donationRepo.create(donation);
     }
     async getAllDonations() {
@@ -97,7 +108,7 @@ __decorate([
     rest_1.post('/donations'),
     __param(0, rest_1.requestBody()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [donation_1.Donation, donation_1.Donation]),
+    __metadata("design:paramtypes", [donation_1.Donation]),
     __metadata("design:returntype", Promise)
 ], DonationController.prototype, "newDonation", null);
 __decorate([
