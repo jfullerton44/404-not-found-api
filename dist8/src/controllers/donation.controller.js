@@ -73,6 +73,17 @@ let DonationController = class DonationController {
         if (!paymentExists) {
             throw new rest_1.HttpErrors.Unauthorized('Payment does not exist');
         }
+        console.log("Donation");
+        var payment = await this.paymentRepo.findById(donation.pm_id);
+        console.log("Don");
+        var stripe = require("stripe")("sk_test_3P0s9sObeFYsv3djqj0ec7kJ");
+        var charge = await stripe.charges.create({
+            amount: donation.amount_donated,
+            currency: "usd",
+            source: payment.cardSource,
+            description: "$" + donation.amount_donated + " charged"
+        });
+        console.log("after");
         return await this.donationRepo.create(donation);
     }
     async getAllDonations() {
