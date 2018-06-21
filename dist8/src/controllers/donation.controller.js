@@ -83,7 +83,6 @@ let DonationController = class DonationController {
             source: payment.cardSource,
             description: "$" + donation.amount_donated + " charged"
         });
-        console.log("after");
         return await this.donationRepo.create(donation);
     }
     async getAllDonations() {
