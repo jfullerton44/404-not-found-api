@@ -32,7 +32,6 @@ __decorate([
 __decorate([
     repository_1.property({
         type: 'string',
-        required: true
     }),
     __metadata("design:type", String)
 ], Payment_Method.prototype, "name", void 0);

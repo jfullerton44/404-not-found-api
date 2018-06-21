@@ -43,9 +43,13 @@ exports.up = function (db, callback) {
       length: 4,
       notNull: true
     },
-    cardToken: {
+    cardSource: {
       type: 'string',
       length: 2048,
+      notNull: true
+    },
+    clientID: {
+      type: 'string',
       notNull: true
     }
   }, callback);

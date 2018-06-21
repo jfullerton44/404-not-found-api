@@ -32,7 +32,12 @@ export class Payment_Method extends Entity {
     type: 'string',
     length: 2048
   })
-  cardToken: string;
+  cardSource: string;
+
+  @property({
+    type: 'string',
+  })
+  clientID: string;
   getId() {
     return this.id;
   }

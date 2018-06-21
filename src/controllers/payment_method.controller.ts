@@ -1,6 +1,6 @@
 import { repository } from "@loopback/repository";
 import { ProjectRepository } from "../repositories/project.repository";
-import { post, get, requestBody, HttpErrors, param } from "@loopback/rest";
+import { post, get, requestBody, HttpErrors, param, del } from "@loopback/rest";
 import { Payment_MethodRepository } from "../repositories/payment_method.repository";
 import { Payment_Method } from "../models/payment_method";
 import { UserRepository } from "../repositories/user.repository";
@@ -34,5 +34,14 @@ export class Payment_MethodController {
   @get('/payment_methods')
   async getAllPayment_Methods(): Promise<Array<Payment_Method>> {
     return await this.payment_methodRepo.find();
+  }
+
+  @del('/payment_methods/{id}')
+  async removePayment(@param.path.number('id') id: number) {
+    let payment_methodExists: boolean = !!(await this.payment_methodRepo.count({ id }));
+    if (!payment_methodExists) {
+      throw new HttpErrors.BadRequest(`payment method ID ${id} does not exist`);
+    }
+    return await this.payment_methodRepo.deleteById(id);
   }
 }
