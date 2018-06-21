@@ -4,6 +4,7 @@ import { repository } from "@loopback/repository";
 import { post, get, requestBody, HttpErrors, param } from "@loopback/rest";
 import { Donation } from "../models/donation";
 import { CharityRepository } from "../repositories/charity.repository";
+import { Payment_MethodRepository } from "../repositories/payment_method.repository";
 
 
 export class DonationController {
@@ -11,7 +12,8 @@ export class DonationController {
   constructor(
     @repository(DonationRepository.name) private donationRepo: DonationRepository,
     @repository(UserRepository.name) private userRepo: UserRepository,
-    @repository(CharityRepository.name) private charityRepo: CharityRepository
+    @repository(CharityRepository.name) private charityRepo: CharityRepository,
+    @repository(Payment_MethodRepository) private paymentRepo: Payment_MethodRepository
   ) { }
 
 
@@ -51,7 +53,7 @@ export class DonationController {
   */
   @post('/donations')
   async newDonation(
-    @requestBody() donation: Donation
+    @requestBody() donation: Donation, donate: Donation
   ) {
     let userExists: boolean = !!(await this.userRepo.count({ id: donation.user_id }));
     if (!userExists) {
@@ -60,10 +62,15 @@ export class DonationController {
 
     let charityExists: boolean = !!(await this.charityRepo.count({ id: donation.charity_id }));
 
-
     if (!charityExists) {
       throw new HttpErrors.Unauthorized('Charity Does not exist');
     }
+
+    let paymentExists: boolean = !!(await this.paymentRepo).count({ id: donation.pm_id });
+    if (!paymentExists) {
+      throw new HttpErrors.Unauthorized('Payment does not exist');
+    }
+
     return await this.donationRepo.create(donation);
   }
 
