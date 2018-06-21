@@ -5,11 +5,25 @@ import { Class, Repository, juggler } from '@loopback/repository';
 declare const SafariApiApplication_base: (new (...args: any[]) => {
     [x: string]: any;
     projectRoot: string;
-    bootOptions?: import("../node_modules/@loopback/boot/dist8/src/interfaces").BootOptions | undefined;
+    bootOptions?: {
+        [prop: string]: any;
+        controllers?: {
+            dirs?: string | string[] | undefined;
+            extensions?: string | string[] | undefined;
+            nested?: boolean | undefined;
+            glob?: string | undefined;
+        } | undefined;
+        repositories?: {
+            dirs?: string | string[] | undefined;
+            extensions?: string | string[] | undefined;
+            nested?: boolean | undefined;
+            glob?: string | undefined;
+        } | undefined;
+    } | undefined;
     boot(): Promise<void>;
-    booters(...booterCls: import("../node_modules/@loopback/context/dist8/src/value-promise").Constructor<Booter>[]): Binding<any>[];
-    component(component: import("../node_modules/@loopback/context/dist8/src/value-promise").Constructor<{}>): void;
-    mountComponentBooters(component: import("../node_modules/@loopback/context/dist8/src/value-promise").Constructor<{}>): void;
+    booters(...booterCls: (new (...args: any[]) => Booter)[]): Binding<any>[];
+    component(component: new (...args: any[]) => {}): void;
+    mountComponentBooters(component: new (...args: any[]) => {}): void;
 }) & (new (...args: any[]) => {
     [x: string]: any;
     repository(repo: Class<Repository<any>>): void;
@@ -22,4 +36,3 @@ export declare class SafariApiApplication extends SafariApiApplication_base {
     constructor(options?: ApplicationConfig);
     start(): Promise<void>;
 }
-export {};

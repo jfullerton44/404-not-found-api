@@ -32,6 +32,7 @@ __decorate([
 __decorate([
     repository_1.property({
         type: 'string',
+        required: true
     }),
     __metadata("design:type", String)
 ], Payment_Method.prototype, "name", void 0);
@@ -48,7 +49,13 @@ __decorate([
         length: 2048
     }),
     __metadata("design:type", String)
-], Payment_Method.prototype, "cardToken", void 0);
+], Payment_Method.prototype, "cardSource", void 0);
+__decorate([
+    repository_1.property({
+        type: 'string',
+    }),
+    __metadata("design:type", String)
+], Payment_Method.prototype, "clientID", void 0);
 Payment_Method = __decorate([
     repository_1.model({
         name: "payment_method"
