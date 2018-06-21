@@ -39,6 +39,13 @@ let Payment_MethodController = class Payment_MethodController {
     async getAllPayment_Methods() {
         return await this.payment_methodRepo.find();
     }
+    async removePayment(id) {
+        let payment_methodExists = !!(await this.payment_methodRepo.count({ id }));
+        if (!payment_methodExists) {
+            throw new rest_1.HttpErrors.BadRequest(`payment method ID ${id} does not exist`);
+        }
+        return await this.payment_methodRepo.deleteById(id);
+    }
 };
 __decorate([
     rest_1.post('/payment_method'),
@@ -60,6 +67,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], Payment_MethodController.prototype, "getAllPayment_Methods", null);
+__decorate([
+    rest_1.del('/payment_methods/{id}'),
+    __param(0, rest_1.param.path.number('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], Payment_MethodController.prototype, "removePayment", null);
 Payment_MethodController = __decorate([
     __param(0, repository_1.repository(payment_method_repository_1.Payment_MethodRepository.name)),
     __param(1, repository_1.repository(user_repository_1.UserRepository.name)),

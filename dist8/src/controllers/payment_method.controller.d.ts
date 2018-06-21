@@ -8,4 +8,5 @@ export declare class Payment_MethodController {
     createPayment_Method(payment_method: Payment_Method): Promise<Payment_Method>;
     getPaymentByID(id: number): Promise<Payment_Method>;
     getAllPayment_Methods(): Promise<Array<Payment_Method>>;
+    removePayment(id: number): Promise<boolean>;
 }

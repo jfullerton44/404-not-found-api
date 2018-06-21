@@ -36,7 +36,7 @@
     "migrateDown": "NODE_ENV=jake DATABASE_NAME=database DATABASE_USER=root DATABASE_PASSWORD=password db-migrate down",
     "jake": "NODE_ENV=jake DATABASE_NAME=database DATABASE_USER=root DATABASE_PASSWORD=password npm run updateStart",
     "julia": "NODE_ENV=julia DATABASE_NAME=teamproject DATABASE_USER=root DATABASE_PASSWORD=Livelife1 npm run updateStart",
-    "paul": "(set NODE_ENV=paul) && (set DATABASE_NAME=charity_database) && (set DATABASE_USER=root) && (set DATABASE_PASSWORD=Xzl25p56p!) && (db-migrate) && (npm start)"
+    "paul": "(set NODE_ENV=paul) && (set DATABASE_NAME=charity_database) && (set DATABASE_USER=root) && (set DATABASE_PASSWORD=Xzl25p56p!)  && (npm start)"
   },
   "repository": {
     "type": "git"
