@@ -38,6 +38,13 @@ __decorate([
 ], Donation.prototype, "user_id", void 0);
 __decorate([
     repository_1.property({
+        type: 'int',
+        required: true
+    }),
+    __metadata("design:type", Number)
+], Donation.prototype, "pm_id", void 0);
+__decorate([
+    repository_1.property({
         type: 'number'
     }),
     __metadata("design:type", Number)
