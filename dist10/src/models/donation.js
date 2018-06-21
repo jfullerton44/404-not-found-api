@@ -38,7 +38,7 @@ __decorate([
 ], Donation.prototype, "user_id", void 0);
 __decorate([
     repository_1.property({
-        type: 'int',
+        type: 'number',
         required: true
     }),
     __metadata("design:type", Number)
